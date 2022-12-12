@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CountKegels : MonoBehaviour
+public class CountBoxes : MonoBehaviour
 {
-    private int countKegels;
     private GameManager gameManager;
 
     private void Start()
@@ -15,18 +14,14 @@ public class CountKegels : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Kegel"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            countKegels++;
-            gameManager.PlayScore = countKegels;
-        }
-    }
+            this.gameObject.SetActive(false);
+            gameManager.Box++;
+            gameManager.PlayScore = gameManager.Box;
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Kegel"))
-        {
-            countKegels--;
+            gameManager.GameScore += gameManager.PlayScore;
+            Debug.Log(gameManager.PlayScore);
         }
     }
 }

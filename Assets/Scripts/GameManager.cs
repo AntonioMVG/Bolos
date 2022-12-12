@@ -8,20 +8,18 @@ public class GameManager : MonoBehaviour
 
     private int playScore;
     private int gameScore;
+    private int box;
 
     public int PlayScore { get => playScore; set => playScore = value; }
     public int GameScore { get => gameScore; set => gameScore = value; }
+    public int Box { get => box; set => box = value; }
 
     private void Awake()
     {
         int instancesNumber = FindObjectsOfType<GameManager>().Length;
         if(instancesNumber != 1)
-        {
             Destroy(gameObject);
-        }
         else
-        {
             DontDestroyOnLoad(gameObject);
-        }
     }
 }
